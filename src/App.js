@@ -18,8 +18,8 @@ function App() {
   ];
 
   const embeddedOptions = [
-    { value: 'HPF: Token (Swipe)', label: 'HPF: Token (Swipe)', key: 6},
-    { value: 'Embedded Payments', label: 'Embedded Payments', key: 7}
+    { value: 'Sale', label: 'Embedded: Sale', key: 6},
+    { value: 'Token', label: 'Embedded: Token', key: 7}
   ];
 
   const apiOptions = [

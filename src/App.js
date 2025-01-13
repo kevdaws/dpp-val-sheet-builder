@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as XLSX from 'sheetjs-style';
 
 
@@ -40,18 +40,6 @@ function App() {
     'ACH/EFT Rejected',
     'Vault'
   ]
-  
-  useEffect(() => {
-    console.log(hosted);
-  }, [hosted])
-
-  useEffect(() => {
-    console.log(embedded);
-  }, [embedded])
-
-  useEffect(() => {
-    console.log(partnerName);
-  }, [partnerName])
 
   const handleHostedChange = (event) => {
     

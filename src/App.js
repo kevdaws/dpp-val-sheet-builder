@@ -216,7 +216,7 @@ function App() {
       <h2>Hosted Payment Form Options</h2>
       
       {hostedOptions.map((option) => (
-        <button className='button-4' key={option.key} value={option.value} onClick={handleHostedChange}>
+        <button style={{backgroundColor: hosted.includes(option.value) ? '#90EE90' : '#FAFBFC'}} className='button-4' key={option.key} value={option.value} onClick={handleHostedChange}>
           {option.value}
         </button>
       ))}<br/>
@@ -224,7 +224,7 @@ function App() {
       <h2>Embedded Payments Options</h2>
       
       {embeddedOptions.map((option) => (
-        <button className='button-4' key={option.key} value={option.value} onClick={handleEmbeddedChange}>
+        <button style={{backgroundColor: embedded.includes(option.value) ? '#90EE90' : '#FAFBFC'}} className='button-4' key={option.key} value={option.value} onClick={handleEmbeddedChange}>
           {option.value}
         </button>
       ))}<br/>
@@ -232,7 +232,7 @@ function App() {
       <h2>API Endpoints</h2>
       
       {apiOptions.map((option) => (
-        <button className='button-4' key={option.key} value={option.value} onClick={handleEndpointChange}>
+        <button style={{backgroundColor: endpoints.includes(option.value) ? '#90EE90' : '#FAFBFC'}}className='button-4' key={option.key} value={option.value} onClick={handleEndpointChange}>
           {option.value}
         </button>
       ))}<br/>

@@ -8,18 +8,20 @@ function App() {
   const [hosted, setHosted] = useState([]);
   const [embedded, setEmbedded] = useState([]);
   const [endpoints, setEndpoints] = useState([]);
-  const [partnerName, setPartnerName] = useState('');
+  const [partnerName, setPartnerName] = useState(''); 
   
   const hostedOptions = [
     { value: 'Token (Keyed)', label: 'HPF: Token (Keyed)', key: 1 },
     { value: 'Vault (Keyed)', label: 'HPF: Vault (Keyed)', key: 2},
     { value: 'Cryptogram (Keyed)', label: 'HPF: Cryptogram (Keyed)', key: 3},
     { value: 'Token (Swipe)', label: 'HPF: Token (Swipe)', key: 4},
+    { value: 'Vault (Swipe)', label: 'HPF: Token (Swipe)', key: 4},
+    { value: 'Cryptogram (Swipe)', label: 'HPF: Token (Swipe)', key: 4},
   ];
 
   const embeddedOptions = [
     { value: 'Sale', label: 'Embedded: Sale', key: 6},
-    { value: 'Token', label: 'Embedded: Token', key: 7}
+    { value: 'Generate Token', label: 'Embedded: Token', key: 7}
   ];
 
   const apiOptions = [
@@ -28,10 +30,28 @@ function App() {
     { value: 'Refund Payment', label: 'Refund Payment', key: 10 },
     { value: 'Cancel Payment', label: 'Cancel Payment', key: 11 },
   ]
+
+  const webhookOptions = [
+    'Merchant Loaded',
+    'Merchant Updated',
+    'Payment Processed',
+    'CC Batch Processed',
+    'ACH/EFT Batch Processed',
+    'ACH/EFT Rejected',
+    'Vault'
+  ]
   
   useEffect(() => {
     console.log(hosted);
   }, [hosted])
+
+  useEffect(() => {
+    console.log(embedded);
+  }, [embedded])
+
+  useEffect(() => {
+    console.log(partnerName);
+  }, [partnerName])
 
   const handleHostedChange = (event) => {
     
@@ -72,6 +92,7 @@ function App() {
     const hostedHeader = ['Hosted Payment Form', 'Response Data']
     const embeddedHeader = ['Embedded Payments', 'JWT', 'Response Data']
     const endpointHeader = ['API Endpoints', 'Request Data', 'Response Data']
+    const webhookHeader = ['Webhook', 'Subscribed? (Y/N)']
   
     const sheetData = []
     
@@ -85,42 +106,92 @@ function App() {
 
       console.log(sheetData);
 
+    }
+
+    if (embedded.length !== 0) {
+
+      if (sheetData.length !== 0) {
+        
+        sheetData.push('');
+        sheetData.push(embeddedHeader);
+      
+      } else {
+
+        sheetData.push(embeddedHeader);
+
+      }
+
+      embedded.map((option) => (
+        sheetData.push([option, '', ''])
+      ));
+
+      }
+
+    if (endpoints.length !== 0) {
+
+      if (sheetData.length !== 0) {
+          
+        sheetData.push('');
+        sheetData.push(endpointHeader);
+        
+      } else {
+
+        sheetData.push(endpointHeader);
+
+      }
+  
+      
+      
+      endpoints.map((option) => (
+        sheetData.push([option, '', ''])
+      ));
+  
+      }
+
+      if (sheetData.length !== 0) {
+      
+        sheetData.push('');
+        sheetData.push(webhookHeader);
+      
+      } else {
+
+        sheetData.push(webhookHeader);
+
+      }
+
+
+      webhookOptions.map((option) => (
+        sheetData.push([option, ''])
+      ));
+
     const wb = XLSX.utils.book_new()
     const ws = XLSX.utils.aoa_to_sheet(sheetData);
-  
-  ws['!cols'] = [{ width: 30 }, { width: 30 }];
 
-    
-    ws['A1'].s = {
-      font: {
-          bold: true,
-          color: "#F2F2F2",
-      },
-      alignment: {
-        horizontal: 'center'
+    const styledHeadings = ['Hosted Payment Form', 'Response Data', 'Embedded Payments', 'JWT', 'API Endpoints', 'Request Data', 'Webhook', 'Subscribed? (Y/N)']
+
+    ws['!cols'] = [{ width: 30 }, { width: 30 }, { width: 30 }];
+
+    for (const cell in ws) {
+      //console.log(ws[cell].v);
+      if (styledHeadings.includes(ws[cell].v)) {
+        console.log('true');
+        ws[cell].s = {
+          font: {
+            bold: true,
+            color: "#F2F2F2",
+          },
+            alignment: {
+              horizontal: 'center'
+          }
+        }
       }
     }
-
-    ws['B1'].s = {
-      font: {
-          bold: true,
-          color: "#F2F2F2",
-      },
-      alignment: {
-        horizontal: 'center'
-      }
-    }
-
     
     // Build the final sheet
     XLSX.utils.book_append_sheet(wb, ws, "Validation Sheet");
-    
     XLSX.writeFile(wb, "ValSheet.xlsx");
     
     
-  }
-
-
   }
 
   return (
@@ -161,6 +232,12 @@ function App() {
         {hosted.map((option) => (
           <li>{option}</li>
       ))}
+      {embedded.map((option) => (
+          <li>{option}</li>
+      ))}
+      {endpoints.map((option) => (
+          <li>{option}</li>
+      ))}
       </ul>
       
       <br />
@@ -169,6 +246,7 @@ function App() {
 
     </div>
   );
+
 }
 
 export default App;

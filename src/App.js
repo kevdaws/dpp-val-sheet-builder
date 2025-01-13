@@ -232,7 +232,7 @@ function App() {
       <h2>API Endpoints</h2><br />
       
       {apiOptions.map((option) => (
-        <button style={{backgroundColor: endpoints.includes(option.value) ? '#90EE90' : '#FAFBFC'}}className='button-4' key={option.key} value={option.value} onClick={handleEndpointChange}>
+        <button style={{backgroundColor: endpoints.includes(option.value) ? '#90EE90' : '#FAFBFC'}} className='button-4' key={option.key} value={option.value} onClick={handleEndpointChange}>
           {option.value}
         </button>
       ))}<br/>
@@ -251,9 +251,9 @@ function App() {
       ))}
       </ul> */}
       
-      <br />
+      <br /><br />
 
-      <button className='button-4' onClick={handleFileExport}>Create Validation Sheet</button>
+      <button style={{backgroundColor: '#24a0ed', color: '#FFFFFF'}} className='button-4' onClick={handleFileExport}>Create Validation Sheet</button>
 
     </div>
   );

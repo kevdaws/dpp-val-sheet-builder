@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import * as XLSX from 'xlsx';
+import * as XLSX from 'sheetjs-style';
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
     { value: 'Refund Payment', label: 'Refund Payment', key: 10 },
     { value: 'Cancel Payment', label: 'Cancel Payment', key: 11 },
   ]
-
+  
   useEffect(() => {
     console.log(hosted);
   }, [hosted])
@@ -85,10 +85,34 @@ function App() {
 
       console.log(sheetData);
 
+    const wb = XLSX.utils.book_new()
+    const ws = XLSX.utils.aoa_to_sheet(sheetData);
+  
+  ws['!cols'] = [{ width: 30 }, { width: 30 }];
 
-    const wb = XLSX.utils.book_new(),
-    ws = XLSX.utils.aoa_to_sheet(sheetData);
+    
+    ws['A1'].s = {
+      font: {
+          bold: true,
+          color: "#F2F2F2",
+      },
+      alignment: {
+        horizontal: 'center'
+      }
+    }
 
+    ws['B1'].s = {
+      font: {
+          bold: true,
+          color: "#F2F2F2",
+      },
+      alignment: {
+        horizontal: 'center'
+      }
+    }
+
+    
+    // Build the final sheet
     XLSX.utils.book_append_sheet(wb, ws, "Validation Sheet");
     
     XLSX.writeFile(wb, "ValSheet.xlsx");

@@ -47,6 +47,8 @@ input {
   word-wrap: break-word;
 }
 
+
+
 li {
   display: inline-block;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -55,6 +57,7 @@ li {
   line-height: 20px;
   list-style: none;
   padding: 6px 16px;
+  margin: 10px 0
 }
 
 .partner-name {

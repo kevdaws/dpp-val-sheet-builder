@@ -11,24 +11,38 @@ function App() {
   const [partnerName, setPartnerName] = useState(''); 
   
   const hostedOptions = [
-    { value: 'Token (Keyed)', label: 'HPF: Token (Keyed)', key: 1 },
-    { value: 'Vault (Keyed)', label: 'HPF: Vault (Keyed)', key: 2},
-    { value: 'Cryptogram (Keyed)', label: 'HPF: Cryptogram (Keyed)', key: 3},
-    { value: 'Token (Swipe)', label: 'HPF: Token (Swipe)', key: 4},
-    { value: 'Vault (Swipe)', label: 'HPF: Token (Swipe)', key: 4},
-    { value: 'Cryptogram (Swipe)', label: 'HPF: Token (Swipe)', key: 4},
+    { value: 'Token (Keyed)', key: 1 },
+    { value: 'Vault (Keyed)',  key: 2},
+    { value: 'Cryptogram (Keyed)', key: 3},
+    { value: 'Token (Swipe)', key: 4},
+    { value: 'Vault (Swipe)', key: 5},
+    { value: 'Cryptogram (Swipe)', key: 6},
   ];
 
   const embeddedOptions = [
-    { value: 'Sale', label: 'Embedded: Sale', key: 6},
-    { value: 'Generate Token', label: 'Embedded: Token', key: 7}
+    { value: 'Embedded Sale', key: 7},
+    { value: 'Embedded Token', key: 8}
   ];
 
   const apiOptions = [
-    { value: 'Create Payment', label: 'Create Payment', key: 8 },
-    { value: 'Authorize Payment', label: 'Authorize Payment', key: 9 },
-    { value: 'Refund Payment', label: 'Refund Payment', key: 10 },
-    { value: 'Cancel Payment', label: 'Cancel Payment', key: 11 },
+    { value: 'Create Payment', key: 8 },
+    { value: 'Authorize Payment', key: 9 },
+    { value: 'Refund Payment', key: 10 },
+    { value: 'Cancel Payment', key: 11 },
+    { value: 'Complete Payment', key: 12 },
+    { value: 'Search Payment', key: 13 },
+    { value: 'Create Subscription', key: 14 },
+    { value: 'Modify Subscription', key: 15 },
+    { value: 'Create Payment Method', key: 16 },
+    { value: 'Modify Payment Method', key: 17 },
+    { value: 'Generate Token', key: 18 },
+    { value: 'Create Customer', key: 19 },
+    { value: 'Get Customer', key: 20 },
+    { value: 'Modify Customer', key: 21 },
+    { value: 'Close Batch', key: 22 },
+    { value: 'Retrieve Report', key: 23 },
+    { value: 'Create Payment Link', key: 24 }
+
   ]
 
   const webhookOptions = [
@@ -46,7 +60,7 @@ function App() {
     if (hosted.indexOf(event.target.value) === -1) {
     setHosted([event.target.value, ...hosted]);
     } else {
-    setHosted(hosted.filter(a => a.key !== event.target.value.key))
+    setHosted(hosted.filter(a => a !== event.target.value))
     }
     
   };
@@ -56,7 +70,7 @@ function App() {
     if (embedded.indexOf(event.target.value) === -1) {
       setEmbedded([event.target.value, ...embedded]);
       } else {
-      setEmbedded(embedded.filter(a => a.key !== event.target.value.key))
+      setEmbedded(embedded.filter(a => a !== event.target.value))
       }
   
     };
@@ -66,7 +80,7 @@ function App() {
     if (endpoints.indexOf(event.target.value) === -1) {
     setEndpoints([event.target.value, ...endpoints]);
     } else {
-    setEndpoints(endpoints.filter(a => a.key !== event.target.value.key))
+    setEndpoints(endpoints.filter(a => a !== event.target.value))
     }
     
   };
@@ -162,7 +176,6 @@ function App() {
     for (const cell in ws) {
       //console.log(ws[cell].v);
       if (styledHeadings.includes(ws[cell].v)) {
-        console.log('true');
         ws[cell].s = {
           font: {
             bold: true,
@@ -204,7 +217,7 @@ function App() {
       
       {hostedOptions.map((option) => (
         <button className='button-4' key={option.key} value={option.value} onClick={handleHostedChange}>
-          {option.label}
+          {option.value}
         </button>
       ))}<br/>
 
@@ -212,7 +225,7 @@ function App() {
       
       {embeddedOptions.map((option) => (
         <button className='button-4' key={option.key} value={option.value} onClick={handleEmbeddedChange}>
-          {option.label}
+          {option.value}
         </button>
       ))}<br/>
 
@@ -220,19 +233,19 @@ function App() {
       
       {apiOptions.map((option) => (
         <button className='button-4' key={option.key} value={option.value} onClick={handleEndpointChange}>
-          {option.label}
+          {option.value}
         </button>
       ))}<br/>
 
-      <h2>Current Selections</h2>
-
+      <h2>Current Selections:</h2><br/>
+      
       <ul>
         {hosted.map((option) => (
           <li>{option}</li>
       ))}
       {embedded.map((option) => (
           <li>{option}</li>
-      ))}
+      ))}   
       {endpoints.map((option) => (
           <li>{option}</li>
       ))}

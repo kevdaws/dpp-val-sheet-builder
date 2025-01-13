@@ -2,7 +2,7 @@ div {
   padding: 5px
 }
 
-h2, label {
+h2, h3, label {
   appearance: none;
   background-color: #FAFBFC;
   box-sizing: border-box;

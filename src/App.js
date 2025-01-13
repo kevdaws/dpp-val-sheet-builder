@@ -99,68 +99,50 @@ function App() {
     const sheetData = []
     
     if (hosted.length !== 0) {
-
       sheetData.push(hostedHeader);
 
       hosted.map((option) => (
         sheetData.push([option, '', ''])
       ));
 
-      console.log(sheetData);
-
     }
 
     if (embedded.length !== 0) {
-
+      
       if (sheetData.length !== 0) {
-        
         sheetData.push('');
         sheetData.push(embeddedHeader);
-      
       } else {
-
         sheetData.push(embeddedHeader);
-
       }
 
       embedded.map((option) => (
         sheetData.push([option, '', ''])
       ));
 
-      }
+    }
 
     if (endpoints.length !== 0) {
 
       if (sheetData.length !== 0) {
-          
         sheetData.push('');
         sheetData.push(endpointHeader);
-        
       } else {
-
         sheetData.push(endpointHeader);
-
       }
   
-      
-      
       endpoints.map((option) => (
         sheetData.push([option, '', ''])
       ));
   
-      }
+    }
 
       if (sheetData.length !== 0) {
-      
         sheetData.push('');
         sheetData.push(webhookHeader);
-      
       } else {
-
         sheetData.push(webhookHeader);
-
       }
-
 
       webhookOptions.map((option) => (
         sheetData.push([option, ''])

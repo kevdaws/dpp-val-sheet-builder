@@ -189,7 +189,17 @@ function App() {
     
     // Build the final sheet
     XLSX.utils.book_append_sheet(wb, ws, "Validation Sheet");
-    XLSX.writeFile(wb, "ValSheet.xlsx");
+    //XLSX.writeFile(wb, "ValSheet.xlsx");
+
+    if (partnerName.length === 0) {
+
+      XLSX.writeFile(wb, "ValSheet.xlsx");
+    
+    } else {
+
+      const fileName = `${partnerName}.xlsx`
+      XLSX.writeFile(wb, fileName);
+    }
     
     
   }
@@ -198,8 +208,8 @@ function App() {
     <div>
       
       <div className='partner-name'>
-      <label onChange={handlePartnerChange}>Partner Name</label>
-      <input></input><br/>
+      <label >Partner Name</label>
+      <input onChange={handlePartnerChange}></input><br/>
       </div>
       
       <h2>Hosted Payment Form Options</h2>

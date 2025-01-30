@@ -261,20 +261,6 @@ function App() {
           {option.value}
         </button>
       ))}<br/>
-
-      {/* <h2>Current Selections:</h2><br/>
-      
-      <ul>
-        {hosted.map((option) => (
-          <li>{option}</li>
-      ))}
-      {embedded.map((option) => (
-          <li>{option}</li>
-      ))}   
-      {endpoints.map((option) => (
-          <li>{option}</li>
-      ))}
-      </ul> */}
       
       <br /><br />
 

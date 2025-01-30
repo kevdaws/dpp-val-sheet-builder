@@ -210,11 +210,12 @@ function App() {
 
     if (partnerName.length === 0) {
 
-      XLSX.writeFile(wb, "ValSheet.xlsx");
+      XLSX.writeFile(wb, "Validation-Sheet.xlsx");
     
     } else {
 
-      const fileName = `${partnerName}.xlsx`
+    
+      const fileName = `${partnerName.replace(' ', '-')}-Validation-Sheet.xlsx`
       XLSX.writeFile(wb, fileName);
     }
     

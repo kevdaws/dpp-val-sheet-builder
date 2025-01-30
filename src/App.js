@@ -8,6 +8,7 @@ function App() {
   const [hosted, setHosted] = useState([]);
   const [embedded, setEmbedded] = useState([]);
   const [endpoints, setEndpoints] = useState([]);
+  const [wallets, setWallets] = useState([]);
   const [partnerName, setPartnerName] = useState(''); 
   
   const hostedOptions = [
@@ -21,27 +22,34 @@ function App() {
 
   const embeddedOptions = [
     { value: 'Embedded Sale', key: 7},
-    { value: 'Embedded Token', key: 8}
+    { value: 'Embedded Token', key: 8},
+  ];
+
+  const walletOptions = [
+    { value: 'Apple Pay', key: 9},
+    { value: 'Google Pay', key: 10},
+    { value: 'Paypal', key: 11},
+    { value: 'Paze', key: 12}
   ];
 
   const apiOptions = [
-    { value: 'Create Payment', key: 8 },
-    { value: 'Authorize Payment', key: 9 },
-    { value: 'Refund Payment', key: 10 },
-    { value: 'Cancel Payment', key: 11 },
-    { value: 'Complete Payment', key: 12 },
-    { value: 'Search Payment', key: 13 },
-    { value: 'Create Subscription', key: 14 },
-    { value: 'Modify Subscription', key: 15 },
-    { value: 'Create Payment Method', key: 16 },
-    { value: 'Modify Payment Method', key: 17 },
-    { value: 'Generate Token', key: 18 },
-    { value: 'Create Customer', key: 19 },
-    { value: 'Get Customer', key: 20 },
-    { value: 'Modify Customer', key: 21 },
-    { value: 'Close Batch', key: 22 },
-    { value: 'Retrieve Report', key: 23 },
-    { value: 'Create Payment Link', key: 24 }
+    { value: 'Create Payment', key: 13 },
+    { value: 'Authorize Payment', key: 14 },
+    { value: 'Refund Payment', key: 15 },
+    { value: 'Cancel Payment', key: 16 },
+    { value: 'Complete Payment', key: 17 },
+    { value: 'Search Payment', key: 18 },
+    { value: 'Create Subscription', key: 19 },
+    { value: 'Modify Subscription', key: 20 },
+    { value: 'Create Payment Method', key: 21 },
+    { value: 'Modify Payment Method', key: 22 },
+    { value: 'Generate Token', key: 23 },
+    { value: 'Create Customer', key: 24 },
+    { value: 'Get Customer', key: 25 },
+    { value: 'Modify Customer', key: 26 },
+    { value: 'Close Batch', key: 27 },
+    { value: 'Retrieve Report', key: 28 },
+    { value: 'Create Payment Link', key: 29 }
 
   ]
 
@@ -74,6 +82,16 @@ function App() {
       }
   
     };
+
+    const handleWalletChange = (event) => {
+
+      if (wallets.indexOf(event.target.value) === -1) {
+        setWallets([event.target.value, ...wallets]);
+        } else {
+        setWallets(wallets.filter(a => a !== event.target.value))
+        }
+    
+      };
   
   const handleEndpointChange = (event) => {
     
@@ -93,6 +111,7 @@ function App() {
     
     const hostedHeader = ['Hosted Payment Form', 'Response Data']
     const embeddedHeader = ['Embedded Payments', 'JWT', 'Response Data']
+    const walletHeader = ['Digital Wallets', 'Response Data']
     const endpointHeader = ['API Endpoints', 'Request Data', 'Response Data']
     const webhookHeader = ['Webhook', 'Subscribed? (Y/N)']
   
@@ -117,6 +136,21 @@ function App() {
       }
 
       embedded.map((option) => (
+        sheetData.push([option, '', ''])
+      ));
+
+    }
+
+    if (wallets.length !== 0) {
+      
+      if (sheetData.length !== 0) {
+        sheetData.push('');
+        sheetData.push(walletHeader);
+      } else {
+        sheetData.push(walletHeader);
+      }
+
+      wallets.map((option) => (
         sheetData.push([option, '', ''])
       ));
 
@@ -151,7 +185,7 @@ function App() {
     const wb = XLSX.utils.book_new()
     const ws = XLSX.utils.aoa_to_sheet(sheetData);
 
-    const styledHeadings = ['Hosted Payment Form', 'Response Data', 'Embedded Payments', 'JWT', 'API Endpoints', 'Request Data', 'Webhook', 'Subscribed? (Y/N)']
+    const styledHeadings = ['Hosted Payment Form', 'Response Data', 'Embedded Payments', 'JWT', 'Digital Wallets', 'API Endpoints', 'Request Data', 'Webhook', 'Subscribed? (Y/N)']
 
     ws['!cols'] = [{ width: 30 }, { width: 30 }, { width: 30 }];
 
@@ -203,10 +237,18 @@ function App() {
         </button>
       ))}<br/>
 
-      <h2>Embedded Payments Options</h2><br />
+      <h2>Embedded Payment Options</h2><br />
       
       {embeddedOptions.map((option) => (
         <button style={{backgroundColor: embedded.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: embedded.includes(option.value) ? '#FFFFFF' : '#24292E'}} className='button-4' key={option.key} value={option.value} onClick={handleEmbeddedChange}>
+          {option.value}
+        </button>
+      ))}<br/>
+
+      <h2>Digital Wallet Options</h2><br />
+      
+      {walletOptions.map((option) => (
+        <button style={{backgroundColor: wallets.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: wallets.includes(option.value) ? '#FFFFFF' : '#24292E'}} className='button-4' key={option.key} value={option.value} onClick={handleWalletChange}>
           {option.value}
         </button>
       ))}<br/>

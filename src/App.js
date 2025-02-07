@@ -235,7 +235,7 @@ function App() {
       <h2>Hosted Payment Form Options</h2><br />
       
       {hostedOptions.map((option) => (
-        <button style={{backgroundColor: hosted.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: hosted.includes(option.value) ? '#FFFFFF' : '#24292E'}} className='button-4' key={option.key} value={option.value} onClick={handleHostedChange}>
+        <button style={{backgroundColor: hosted.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: hosted.includes(option.value) ? '#FFFFFF' : '#24292E'}} key={option.key} value={option.value} onClick={handleHostedChange}>
           {option.value}
         </button>
       ))}<br/>
@@ -243,7 +243,7 @@ function App() {
       <h2>Embedded Payment Options</h2><br />
       
       {embeddedOptions.map((option) => (
-        <button style={{backgroundColor: embedded.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: embedded.includes(option.value) ? '#FFFFFF' : '#24292E'}} className='button-4' key={option.key} value={option.value} onClick={handleEmbeddedChange}>
+        <button style={{backgroundColor: embedded.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: embedded.includes(option.value) ? '#FFFFFF' : '#24292E'}} key={option.key} value={option.value} onClick={handleEmbeddedChange}>
           {option.value}
         </button>
       ))}<br/>
@@ -251,7 +251,7 @@ function App() {
       <h2>Digital Wallet Options</h2><br />
       
       {walletOptions.map((option) => (
-        <button style={{backgroundColor: wallets.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: wallets.includes(option.value) ? '#FFFFFF' : '#24292E'}} className='button-4' key={option.key} value={option.value} onClick={handleWalletChange}>
+        <button style={{backgroundColor: wallets.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: wallets.includes(option.value) ? '#FFFFFF' : '#24292E'}} key={option.key} value={option.value} onClick={handleWalletChange}>
           {option.value}
         </button>
       ))}<br/>
@@ -259,14 +259,14 @@ function App() {
       <h2>API Endpoints</h2><br />
       
       {apiOptions.map((option) => (
-        <button style={{backgroundColor: endpoints.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: endpoints.includes(option.value) ? '#FFFFFF' : '#24292E'}} className='button-4' key={option.key} value={option.value} onClick={handleEndpointChange}>
+        <button style={{backgroundColor: endpoints.includes(option.value) ? '#24a0ed' : '#FAFBFC', color: endpoints.includes(option.value) ? '#FFFFFF' : '#24292E'}} key={option.key} value={option.value} onClick={handleEndpointChange}>
           {option.value}
         </button>
       ))}<br/>
       
       <br /><br />
 
-      <button style={{backgroundColor: '#24a0ed', color: '#FFFFFF'}} className='button-4' onClick={handleFileExport}>Create Validation Sheet</button>
+      <button style={{backgroundColor: '#24a0ed', color: '#FFFFFF'}} onClick={handleFileExport}>Create Validation Sheet</button>
 
     </div>
   );

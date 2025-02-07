@@ -1,3 +1,3 @@
-# Site to build DPP partner integration validation sheets.
+# App to build DPP partner integration validation sheets.
 
 ## https://dpp-val-sheet-builder.vercel.app/

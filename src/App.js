@@ -13,23 +13,24 @@ function App() {
   
   const hostedOptions = [
     { value: 'Token (Keyed)', key: 1 },
-    { value: 'Vault (Keyed)',  key: 2},
-    { value: 'Cryptogram (Keyed)', key: 3},
-    { value: 'Token (Swipe)', key: 4},
-    { value: 'Vault (Swipe)', key: 5},
-    { value: 'Cryptogram (Swipe)', key: 6},
+    { value: 'Vault (Keyed)',  key: 2 },
+    { value: 'Cryptogram (Keyed)', key: 3 },
+    { value: 'Token (Swipe)', key: 4 },
+    { value: 'Vault (Swipe)', key: 5 },
+    { value: 'Cryptogram (Swipe)', key: 6 },
   ];
 
   const embeddedOptions = [
-    { value: 'Embedded Sale', key: 7},
-    { value: 'Embedded Token', key: 8},
+    { value: 'Embedded Sale', key: 7 },
+    { value: 'Embedded Token', key: 8 },
   ];
 
   const walletOptions = [
-    { value: 'Apple Pay', key: 9},
-    { value: 'Google Pay', key: 10},
-    { value: 'Paypal', key: 11},
-    { value: 'Paze', key: 12}
+    { value: 'Apple Pay', key: 9 },
+    { value: 'Google Pay', key: 10 },
+    { value: 'Paypal', key: 11 },
+    { value: 'Paze', key: 12 },
+    { value: 'Chariot', key: 30 }
   ];
 
   const apiOptions = [
@@ -60,6 +61,7 @@ function App() {
     'CC Batch Processed',
     'ACH/EFT Batch Processed',
     'ACH/EFT Rejected',
+    'CC Chargeback',
     'Vault'
   ]
 

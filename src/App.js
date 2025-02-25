@@ -217,7 +217,7 @@ function App() {
     } else {
 
     
-      const fileName = `${partnerName.replace(' ', '-')}-Validation-Sheet.xlsx`
+      const fileName = `${partnerName.replaceAll(' ', '-')}-Validation-Sheet.xlsx`
       XLSX.writeFile(wb, fileName);
     }
     
